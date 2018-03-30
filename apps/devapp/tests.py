@@ -12,6 +12,5 @@ def udp():
     while True:
         print("++++++++++++++")
         data,addr = udpserSock.recvfrom(BUFSZ)
-        #udpserSock.sendto("hello world",addr)
         print("%s"%ctime(),data,addr)
 udp()

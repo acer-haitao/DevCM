@@ -5,11 +5,21 @@
 # @File    : udp.py
 # @Software: PyCharm
 from socket import *
-from time import ctime
-import struct
+from time import *
+import struct,datetime
 
 import MySQLdb
 
+def add_mysql(MAC,dev_float,uptime):
+    connect = MySQLdb.connect('mysql.litianqiang.com', 'novel', 'qiangzi()', 'test', port=7150, charset="utf8")
+    cursor = connect.cursor()
+    sql = 'insert into dev_data(MAC,dev_float,uptime) VALUES ("{MAC}",{dev_float},"{uptime}");'.format(MAC=MAC,dev_float=dev_float,uptime=uptime)
+    try:
+        cursor.execute(sql)
+        connect.commit()
+    except Exception as e:
+        print("SQLERRO", e)
+        pass
 
 def udp():
     Host = '192.168.3.90'
@@ -23,18 +33,10 @@ def udp():
         MAC = data[8:20].decode()#将bytes转换成str
         dev_data = data[20:24]
         dev_float = struct.unpack('<f', struct.pack('4B', *dev_data))[0]
-        time = ctime()
+        time1 = datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')
         print(MAC,dev_float,ctime())
-def add_mysql(MAC,dev_float,time):
-    connect = MySQLdb.connect('mysql.litianqiang.com', 'novel', 'qiangzi()', 'test', port=7150, charset="utf8")
-    cursor = connect.cursor()
-    sql = 'insert into dev()'
-    try:
-        cursor.execute(sql)
-        connect.commit()
-    except Exception as e:
-        print("SQLERRO", e)
-        pass
+        add_mysql(MAC, dev_float, time1)
 
 
-udp()
+if __name__ == '__main__':
+    udp()
