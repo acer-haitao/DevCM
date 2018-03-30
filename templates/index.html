@@ -6,86 +6,32 @@
 <table class="sui-table table-bordered table-sideheader">
       <thead>
         <tr>
-          <th>#</th>
-          <th>新客户 uv</th>
-          <th>新客户转化率（％）</th>
-          <th>老客户 uv</th>
-          <th>老客户转化率（％）</th>
+          <th>ID</th>
+          <th>MAC地址</th>
+          <th>强度</th>
+          <th>时间</th>
+            <th>客户端IP</th>
         </tr>
       </thead>
       <tbody>
-        <tr>
-          <td>昨日</td>
-          <td>1.0</td>
-          <td>1.0</td>
-          <td>1.0</td>
-          <td>1.0</td>
+      {% for tmp in dev_data %}
+          <tr>
+          <td>{{ tmp.id }}</td>
+          <td>{{ tmp.MAC }}</td>
+          <td>{{ tmp.dev_float }}</td>
+          <td>{{ tmp.uptime }}</td>
+          <td>{{ tmp.fromip }}</td>
         </tr>
-        <tr>
-          <td>前日</td>
-          <td>1.0</td>
-          <td>0.0</td>
-          <td>0.0</td>
-          <td>0.0</td>
-        </tr>
-        <tr>
-          <td>前两天</td>
-          <td>1.0</td>
-          <td>1.0</td>
-          <td>0.0</td>
-          <td>0.0</td>
-        </tr>
-        <tr>
-          <td>行业平均</td>
-          <td>50.73</td>
-          <td>0.73</td>
-          <td>0.73</td>
-          <td>0.73</td>
-        </tr>
-        <tr>
-          <td>当前现状</td>
-          <td>低于平均</td>
-          <td>持平</td>
-          <td>高于平均</td>
-          <td>持平</td>
-        </tr>
+      {% endfor %}
+
       </tbody>
     </table>
 {% endblock content %}
- <script src="http://cdn.bootcss.com/jquery/1.10.2/jquery.min.js"></script>
-   <script type="text/javascript" language="javascript">
-           function update(id) {
-               $.getJSON("/data/" + id + "/",function(data) {
-                $.each(data, function(){
-                    $("#content").html('<p>' + this.name + ' is a ' + this.subject + ' teacher.</p>');
-                });
-               });
-           }
-           function timeDown(limit, i) {
-               limit--;
-               if (i > 4) {
-                   i = 0;
-               }
-               if (limit < 0) {
-                   limit = 3;
-                   update(i);
-                   i++;
-               }
-               $('#time').text(limit + '秒后刷新');
-               setTimeout(function() {
-                   timeDown(limit, i);
-               }, 1000)
-           }
-
-           $(document).ready(function() {
-               timeDown(3, 0)
-        })
-   </script>
- </head>
-
-   <h1>Ajax Test</h1>
-   <p id="time"></p>
-   <div id="content"></div>
-
+<script language="JavaScript">
+function myrefresh(){
+window.location.reload();
+}
+setTimeout('myrefresh()',1000); //指定1秒刷新一次
+</script>
 </body>
 </html>

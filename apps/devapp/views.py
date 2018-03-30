@@ -1,9 +1,7 @@
 import _socket
 
 from django.shortcuts import render
-from socket import *
-from time import ctime
-from udp import udp
+from devapp.models import dev_data
 from django.http import HttpResponse
 from django.shortcuts import render_to_response
 import json
@@ -11,8 +9,8 @@ import json
 # Create your views here.
 
 def index(request):
-    return render(request,'index.html')
-
+    data_test = dev_data.objects.all().order_by('-id')[:10]
+    return render(request,'index.html',context={"dev_data":data_test})
 
 def data(request, id):
     rlist = [['Jack', 'Chinese'], ['Mike', 'English'], ['Bob', 'Math'], ['Frank', 'Art'], ['Lucy', 'Music']]

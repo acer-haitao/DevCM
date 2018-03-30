@@ -10,10 +10,11 @@ import struct,datetime
 
 import MySQLdb
 
-def add_mysql(MAC,dev_float,uptime):
+def add_mysql(MAC,dev_float,uptime,fromip):
     connect = MySQLdb.connect('mysql.litianqiang.com', 'novel', 'qiangzi()', 'test', port=7150, charset="utf8")
     cursor = connect.cursor()
-    sql = 'insert into dev_data(MAC,dev_float,uptime) VALUES ("{MAC}",{dev_float},"{uptime}");'.format(MAC=MAC,dev_float=dev_float,uptime=uptime)
+    sql = 'insert into devapp_dev_data(MAC,dev_float,uptime,fromip) VALUES ("{MAC}",{dev_float},"{uptime}","{fromip}");'.format(MAC=MAC,dev_float=dev_float,uptime=uptime,fromip=fromip)
+    #sql = 'CREATE DATABASE IF NOT EXISTS dev_test DEFAULT CHARSET utf8 COLLATE utf8_general_ci;'
     try:
         cursor.execute(sql)
         connect.commit()
@@ -34,9 +35,8 @@ def udp():
         dev_data = data[20:24]
         dev_float = struct.unpack('<f', struct.pack('4B', *dev_data))[0]
         time1 = datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')
-        print(MAC,dev_float,ctime())
-        add_mysql(MAC, dev_float, time1)
-
+        print(MAC,dev_float,ctime(),addr)
+        add_mysql(MAC, dev_float, time1,addr)
 
 if __name__ == '__main__':
     udp()
