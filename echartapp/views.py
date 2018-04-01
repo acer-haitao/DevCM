@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
 
+import json
 import math
 
 from django.shortcuts import render
@@ -8,7 +9,7 @@ from django.http import HttpResponse
 from django.template import loader
 from pyecharts import Line3D
 #from pyecharts.constants import DEFAULT_HOST
-
+from devapp.models import dev_data
 
 
 # 将数据库数据在Web页面展示
@@ -57,6 +58,17 @@ def linechart(request):
     ''' 绘制折线图... '''
     return render(request, 'echartapp/linechart.html')
 
+def linecharttest(request):
+    ''' 绘制折线图... '''
+    line_test = dev_data.objects.all().order_by('-id')
+    up = []
+    dev_float = []
+    for tmp in line_test:
+        up.append(tmp.uptime)
+        dev_float.append(tmp.dev_float)
+    print(dev_float)
+
+    return render(request, 'echartapp/linecharttest.html',context={"uptime":json.dumps(up),"dev_float":json.dumps(dev_float)})
 
 def multilinechart(request):
     ''' 绘制多维折线图... '''

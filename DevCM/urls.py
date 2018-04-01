@@ -25,6 +25,7 @@ urlpatterns = [
     url(r'^pychart3d/$', views.pyechart3d, name='pychart3d'),
     # 使用 echarts.js  渲染，并在 Web 页面展示折线图...
     url(r'^linechart/$', views.linechart, name='linechart'),
+    url(r'^linecharttest/$', views.linecharttest, name='linecharttest'),
     # 使用 echarts.js 渲染，并在 Web 页面展示多维折线图...
     url(r'^multilinechart/$', views.multilinechart, name='multilinechart'),
     # 柱状图

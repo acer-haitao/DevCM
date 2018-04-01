@@ -9,7 +9,7 @@ import json
 # Create your views here.
 
 def index(request):
-    data_test = dev_data.objects.all().order_by('-id')[:10]
+    data_test = dev_data.objects.all().order_by('-id')[:50]
     return render(request,'index.html',context={"dev_data":data_test})
 
 def data(request, id):
