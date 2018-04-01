@@ -7,8 +7,9 @@ from django.shortcuts import render
 from django.http import HttpResponse
 from django.template import loader
 from pyecharts import Line3D
+#from pyecharts.constants import DEFAULT_HOST
 
-from pyecharts.constants import DEFAULT_HOST
+
 
 # 将数据库数据在Web页面展示
 from .models import PageViewStatistics
@@ -46,7 +47,7 @@ def pyechart3d(request):
     template = loader.get_template('echartapp/pycharts.html')
     l3d = line3d()
     context = dict(myechart=l3d.render_embed(),
-            host=DEFAULT_HOST,
+            host='127.0.0.1',
             script_list=l3d.get_js_dependencies()
             )
     # return HttpResponse(template.render(context, request))

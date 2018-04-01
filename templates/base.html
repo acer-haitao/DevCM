@@ -1,40 +1,43 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="">
-  <title>导航模版</title>
-  <link href="http://g.alicdn.com/sj/dpl/1.5.1/css/sui.min.css" rel="stylesheet">
-  <script type="text/javascript" src="http://g.alicdn.com/sj/lib/jquery/dist/jquery.min.js"></script>
-  <script type="text/javascript" src="http://g.alicdn.com/sj/dpl/1.5.1/js/sui.min.js"></script>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <title>导航模版</title>
+
+    <link href="http://g.alicdn.com/sj/dpl/1.5.1/css/sui.min.css" rel="stylesheet">
+    <script type="text/javascript" src="http://g.alicdn.com/sj/lib/jquery/dist/jquery.min.js"></script>
+    <script type="text/javascript" src="http://g.alicdn.com/sj/dpl/1.5.1/js/sui.min.js"></script>
 </head>
 <body>
 
 <!--导航栏开始-->
-    <div class="sui-navbar navbar-inverse">
-      <div class="navbar-inner"><a href="#" class="sui-brand">SUI</a>
+<div  class=" sui-container sui-navbar navbar-inverse">
+    <div class="navbar-inner"><a href="#" class="sui-brand">SUI</a>
         <ul class="sui-nav">
-          <li class="active"><a href="#">首页</a></li>
-          <li><a href="#">组件</a></li>
-          <li class="sui-dropdown"><a href="javascript:void(0);" data-toggle="dropdown" class="dropdown-toggle">其他 <i class="caret"></i></a>
-            <ul role="menu" class="sui-dropdown-menu">
-              <li role="presentation"><a role="menuitem" tabindex="-1" href="#">关于</a></li>
-              <li role="presentation"><a role="menuitem" tabindex="-1" href="#">项目组成员</a></li>
-              <li role="presentation"><a role="menuitem" tabindex="-1" href="#">版权</a></li>
-            </ul>
-          </li>
+            <li class="active"><a href="http://daydayup11.cn/ ">首页</a></li>
+            <li><a href="http://u17369204c.51mypc.cn/comment/">留言</a></li>
+            <li class="sui-dropdown"><a href="javascript:void(0);" data-toggle="dropdown" class="dropdown-toggle">其他 <i class="caret"></i></a>
+                <ul role="menu" class="sui-dropdown-menu">
+                    <li role="presentation"><a role="menuitem" tabindex="-1" href="piechart/" target="_blank">饼状图</a></li>
+                    <li role="presentation"><a role="menuitem" tabindex="-1" href="pychart3d/" target="_blank">3D</a></li>
+                    <li role="presentation"><a role="menuitem" tabindex="-1" href="linechart/" target="_blank">折线图</a></li>
+                    <li role="presentation"><a role="menuitem" tabindex="-1" href="barchart/" target="_blank">柱状图</a></li>
+                    <li role="presentation"><a role="menuitem" tabindex="-1" href="multilinechart" target="_blank">多维折线图</a></li>
+                </ul>
+            </li>
         </ul>
         <form class="sui-form sui-form pull-right">
-          <input placeholder="宝贝/店铺名称..." type="text">
-          <button class="sui-btn">搜索</button>
+            <input placeholder="请输入搜索内容" type="text">
+            <button class="sui-btn">搜索</button>
         </form>
-      </div>
     </div>
+</div>
 <!--导航栏结束-->
 
 {% block content %}
-<!--内容显示-->
+    <!--内容显示-->
 {% endblock content %}
 
 </body>

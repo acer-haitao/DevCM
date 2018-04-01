@@ -17,6 +17,7 @@ from django.conf.urls import url
 from django.contrib import admin
 from apps.devapp import views as deviews
 from echartapp import views
+
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^data/(?P<id>\d+)/$', deviews.data),

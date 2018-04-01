@@ -23,7 +23,7 @@ def add_mysql(MAC,dev_float,uptime,fromip):
         pass
 
 def udp():
-    Host = '192.168.3.90'
+    Host = '192.168.1.100'
     PORT = 8899
     BUFSZ = 1024
     ADDR = (Host,PORT)

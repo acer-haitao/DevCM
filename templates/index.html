@@ -1,37 +1,137 @@
 <!DOCTYPE html>
 <html lang="en">
+<head>
+    <style type="text/css">
+        *{
+            margin:0;
+            padding:0;
+        }
+        #banner{
+            height:500px;
+            position: relative;
+            margin: -18px auto 0;
+        }
+        .pic{
+            width: auto;
+            height: 500px;
+            border: 1px solid #000000;
+            position: relative;
+        }
+        .pic img{
+            width: 100%;
+            height: 500px;
+            position: absolute;
+            top:0;
+            display:block;
+        }
+        .btn{
+            width: 300px;
+            height: 30px;
+            /*border: 1px solid #f00;*/
+            margin-left: -150px;
+            position: absolute;
+            bottom:10px;
+            left: 50%;
+        }
+        .btn ul li{
+            list-style-type: none;/*清除点*/
+            float: left;/*横着显示*/
+            width: 18px;
+            height: 18px;
+            background-color: #333;
+            border-radius: 9px;
+            color: #ffff00;
+            font-size: 12px;
+            font-family: 'Microsoft YaHei';
+            text-align: center;
+            line-height: 18px;/*垂直居中*/
+            cursor: pointer;/*手指*/
+            margin: 0 15px;
+        }
+        .btn ul li.on {
+            background-color: #0000ff;
+        }
+    </style>
+</head>
 <body>
-{% extends 'base.html' %}
-{% block content %}
-<table class="sui-table table-bordered table-sideheader">
-      <thead>
-        <tr>
-          <th>ID</th>
-          <th>MAC地址</th>
-          <th>强度</th>
-          <th>时间</th>
-            <th>客户端IP</th>
-        </tr>
-      </thead>
-      <tbody>
-      {% for tmp in dev_data %}
-          <tr>
-          <td>{{ tmp.id }}</td>
-          <td>{{ tmp.MAC }}</td>
-          <td>{{ tmp.dev_float }}</td>
-          <td>{{ tmp.uptime }}</td>
-          <td>{{ tmp.fromip }}</td>
-        </tr>
-      {% endfor %}
 
-      </tbody>
-    </table>
+{% extends 'base.html' %}
+
+{% block content %}
+
+    <!--轮播图 sui-container响应式-->
+    <div class="sui-container" id="banner">
+        <!--图片-->
+        <div class="pic">
+            <img src="http://game.gtimg.cn/images/yxzj/img201606/skin/hero-info/106/106-bigskin-1.jpg">
+            <img src="http://game.gtimg.cn/images/yxzj/img201606/skin/hero-info/107/107-bigskin-5.jpg">
+            <img src="http://game.gtimg.cn/images/yxzj/img201606/skin/hero-info/106/106-bigskin-3.jpg">
+            <img src="http://game.gtimg.cn/images/yxzj/img201606/skin/hero-info/106/106-bigskin-4.jpg">
+            <img src="http://game.gtimg.cn/images/yxzj/img201606/skin/hero-info/106/106-bigskin-1.jpg">
+            <img src="http://game.gtimg.cn/images/yxzj/img201606/skin/hero-info/106/106-bigskin-3.jpg">
+        </div>
+        <!--按钮-->
+        <div class="btn">
+            <ul>
+                <li class="on">1</li>
+                <li>2</li>
+                <li>3</li>
+                <li>4</li>
+                <li>5</li>
+                <li>6</li>
+            </ul>
+        </div>
+    </div>
+    <div class="sui-container" >
+        <table class="sui-table table-bordered table-sideheader">
+            <thead>
+            <tr>
+                <th>ID</th>
+                <th>MAC地址</th>
+                <th>强度</th>
+                <th>时间</th>
+                <th>客户端IP</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for tmp in dev_data %}
+                <tr>
+                    <td>{{ tmp.id }}</td>
+                    <td>{{ tmp.MAC }}</td>
+                    <td>{{ tmp.dev_float }}</td>
+                    <td>{{ tmp.uptime }}</td>
+                    <td>{{ tmp.fromip }}</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    <script src="http://ajax.aspnetcdn.com/ajax/jquery/jquery-1.11.3.min.js"></script>
+    <script type="text/javascript">
+        $(function(){
+            var index = 0;
+            $('div.btn ul li').hover(function(){
+                var index = $(this).index();
+                $(this).addClass('on').siblings().removeClass('on');
+                $('div.pic img').eq(index).stop(true).fadeIn().siblings().stop(true).fadeOut();
+            },function(){});
+
+            var play = setInterval(auto,2000);
+
+            $('#banner').hover(function(){
+                clearInterval(play);
+            },function(){
+            });
+
+            function auto(){
+                index++;
+                index%=6;
+                $('div.btn ul li').eq(index).addClass('on').siblings().removeClass('on');
+                $('div.pic img').eq(index).stop(true).fadeIn().siblings().stop(true).fadeOut();
+            }
+        });
+    </script>
 {% endblock content %}
-<script language="JavaScript">
-function myrefresh(){
-window.location.reload();
-}
-setTimeout('myrefresh()',1000); //指定1秒刷新一次
-</script>
+
 </body>
 </html>
