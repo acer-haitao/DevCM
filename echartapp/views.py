@@ -4,18 +4,36 @@ from __future__ import unicode_literals
 import json
 import math
 
+import MySQLdb
 from django.shortcuts import render
 from django.http import HttpResponse
 from django.template import loader
 from pyecharts import Line3D
-#from pyecharts.constants import DEFAULT_HOST
+from pyecharts.constants import DEFAULT_HOST
 from devapp.models import dev_data
 
 
 # 将数据库数据在Web页面展示
 from .models import PageViewStatistics
 
-
+def hdd(request):
+    connect = MySQLdb.connect('mysql.litianqiang.com', 'novel', 'qiangzi()', 'test', port=7150, charset="utf8")
+    cursor = connect.cursor()
+    sql = "select price,sold from hduoduo order by price ASC ;"
+    try:
+        cursor.execute(sql)
+        result = cursor.fetchall()
+        price = []
+        sold = []
+        for tmp in result:
+            price.append(tmp[0])
+            sold.append(tmp[1])
+            print(tmp)
+    except Exception as e:
+        print("SQLERRO", e)
+        connect.close()
+        pass
+    return render(request,'echartapp/hdd.html',context={'price':json.dumps(price),'sold':json.dumps(sold)})
 
 def line3d():
     _data = []
@@ -34,21 +52,12 @@ def line3d():
     return line3d
 
 
-#def pyechart3d(request):
-#    template = loader.get_template('echartapp/pycharts.html')
-#    l3d = line3d()
-#    context = dict(myechart=l3d.render_embed(),
-#            host=DEFAULT_HOST,
-#            script_list=l3d.get_js_dependencies()
-#            )
-#    return HttpResponse(template.render(context, request))
-
 def pyechart3d(request):
     '''使用pycharts绘图，使用html5进行渲染...'''
     template = loader.get_template('echartapp/pycharts.html')
     l3d = line3d()
     context = dict(myechart=l3d.render_embed(),
-            host='127.0.0.1',
+            host=DEFAULT_HOST,
             script_list=l3d.get_js_dependencies()
             )
     # return HttpResponse(template.render(context, request))
@@ -58,17 +67,15 @@ def linechart(request):
     ''' 绘制折线图... '''
     return render(request, 'echartapp/linechart.html')
 
-def linecharttest(request):
+def dev(request):
     ''' 绘制折线图... '''
-    line_test = dev_data.objects.all().order_by('-id')
+    line_test = dev_data.objects.all().order_by('id')
     up = []
     dev_float = []
     for tmp in line_test:
         up.append(tmp.uptime)
         dev_float.append(tmp.dev_float)
-    print(dev_float)
-
-    return render(request, 'echartapp/linecharttest.html',context={"uptime":json.dumps(up),"dev_float":json.dumps(dev_float)})
+    return render(request, 'echartapp/dev.html', context={"uptime":json.dumps(up), "dev_float":json.dumps(dev_float)})
 
 def multilinechart(request):
     ''' 绘制多维折线图... '''
