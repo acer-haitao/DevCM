@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <title>导航模版</title>
+    <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+     <script type="text/javascript" src="dn_music_play.js"></script>
+    </head>
+<body>
+<div id = "dntest" style="backgroud:#f1f1f1;width:50%;height:100px;position:relative;">
+</div>
+<script>
+    DNmusicPlay({
+        boxStyle:"top:91px;left:20px;opacity:1;",
+        playbuttonSrc:"glyphicon glyphicon-volume-up",
+        stopbuttonSrc:"glyphicon glyphicon-volume-off",
+        nodeID:"dntest",
+        audioUrl:
+                [{title: "你瞒我瞒", source: "http://music.163.com/song/media/outer/url?id=25718007.mp3"}
+                ,{title: "消愁", source: "http://music.163.com/song/media/outer/url?id=505221860.mp3"}
+              ]
+    });
+</script>
+</body>
+</html>

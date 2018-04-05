@@ -39,5 +39,8 @@ def udp():
         add_mysql(MAC, dev_float, time1,addr)
 
 if __name__ == '__main__':
-    udp()
-
+    try:
+        udp()
+    except Exception as e:
+        sleep(10)
+        udp()

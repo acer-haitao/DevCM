@@ -9,7 +9,7 @@ from django.shortcuts import render
 from django.http import HttpResponse
 from django.template import loader
 from pyecharts import Line3D
-from pyecharts.constants import DEFAULT_HOST
+#from pyecharts.constants import DEFAULT_HOST
 from devapp.models import dev_data
 
 
