@@ -9,19 +9,80 @@
      <script type="text/javascript" src="dn_music_play.js"></script>
     </head>
 <body>
-<div id = "dntest" style="backgroud:#f1f1f1;width:50%;height:100px;position:relative;">
-</div>
+<nav class="navbar navbar-default">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="#">首页</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav">
+                <li class="active"><a href="#">测试1 <span class="sr-only">(current)</span></a></li>
+                <li><a href="#">测试2</a></li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">下拉菜单 <span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="#">Action</a></li>
+                        <li><a href="#">Another action</a></li>
+                        <li><a href="#">Something else here</a></li>
+                        <li role="separator" class="divider"></li>
+                        <li><a href="#">Separated link</a></li>
+                        <li role="separator" class="divider"></li>
+                        <li><a href="#">One more separated link</a></li>
+                    </ul>
+                </li>
+            </ul>
+            <form class="navbar-form navbar-left">
+                <div class="form-group">
+                    <input type="text" class="form-control" placeholder="Search">
+                </div>
+                <button type="submit" class="btn btn-default">提交</button>
+            </form>
+            <ul id = "dntest"  class="nav navbar-nav navbar-right">
+                <li ><a href="#">Link</a></li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="#">Action</a></li>
+                        <li><a href="#">Another action</a></li>
+                        <li><a href="#">Something else here</a></li>
+                        <li role="separator" class="divider"></li>
+                        <li><a href="#">Separated link</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div><!-- /.navbar-collapse -->
+    </div><!-- /.container-fluid -->
+</nav>
+
+
 <script>
     DNmusicPlay({
-        boxStyle:"top:91px;left:20px;opacity:1;",
+        boxStyle:"right:20%;top:10px;opacity:1;",
         playbuttonSrc:"glyphicon glyphicon-volume-up",
         stopbuttonSrc:"glyphicon glyphicon-volume-off",
         nodeID:"dntest",
         audioUrl:
-                [{title: "你瞒我瞒", source: "http://music.163.com/song/media/outer/url?id=25718007.mp3"}
+                [{title:"牧马城市",source:"http://dl.stream.qqmusic.qq.com/M800000uhMwj387EBp.mp3?vkey=5844772D33AA53D0BE1B363BB60440B2CBBA7796E3D23D0C82E1D0C1723C49BA83FDEA4510828AB1F03D9FDC23F9364137A80654192432BE&guid=5150825362&fromtag=1"}
+                    ,{title: "你瞒我瞒", source: "http://music.163.com/song/media/outer/url?id=25718007.mp3"}
                 ,{title: "消愁", source: "http://music.163.com/song/media/outer/url?id=505221860.mp3"}
               ]
     });
-</script>
+    $('.dropdown-toggle').dropdown();
+    </script>
+
+    <!-- jQuery (Bootstrap 的所有 JavaScript 插件都依赖 jQuery，所以必须放在前边) -->
+    <script src="https://cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script>
+    <!-- 加载 Bootstrap 的所有 JavaScript 插件。你也可以根据需要只加载单个插件。 -->
+    <script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
 </body>
 </html>
